@@ -6,13 +6,11 @@
 !configure_patient_dataset_reader.
 
 /* Plans */
-+!focus(ArtId) // goal sent by the Agents to focus artefacts
- <- lookupArtifact(ArtId,MediumId);
++!focus(ArtId) // goal sent by the Agents to focus artefacts <- lookupArtifact(ArtId,MediumId);
  focus(MediumId).
 
 +!configure_patient_dataset_reader : true <-
 makeArtifact(patient_dataset_reader,"diabetes_mas.PatientDatasetReader", [], ArtId);
-makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],MediumId); // Esta línea no estaba pero sino está rompe el clearPatientMeasureData de abajo.
 focus(ArtId);
 .println("measurement agent started")
 println("Dataset to load:");

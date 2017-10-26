@@ -27,7 +27,7 @@ makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],M
 .send(TupleReaderAgent,achieve,focus(measure_comm_medium)).
 
 +new_voter_registration[source(VoterAgent)] : true <-
-?number_of_voters(Number);
+?number_of_voters(Number)
 -+number_of_voters(Number + 1)
 ?mentor(MentorAgent)
 .send(VoterAgent, tell, mentor(MentorAgent))

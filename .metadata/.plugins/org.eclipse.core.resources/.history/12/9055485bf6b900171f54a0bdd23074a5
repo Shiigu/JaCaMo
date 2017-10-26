@@ -12,7 +12,6 @@
 
 +!configure_patient_dataset_reader : true <-
 makeArtifact(patient_dataset_reader,"diabetes_mas.PatientDatasetReader", [], ArtId);
-makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],MediumId); // Esta línea no estaba pero sino está rompe el clearPatientMeasureData de abajo.
 focus(ArtId);
 .println("measurement agent started")
 println("Dataset to load:");

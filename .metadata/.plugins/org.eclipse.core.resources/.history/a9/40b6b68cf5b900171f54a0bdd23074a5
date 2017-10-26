@@ -11,7 +11,7 @@ import jason.asSyntax.Term;
 public class MeasuresCommunicationMedium extends Artifact {
 	
 	static String PATIENT_MEASURE_PROPERTY = "patient_measures";
-	
+
 	ListTerm terms = new ListTermImpl();
 	
 	void init() {
