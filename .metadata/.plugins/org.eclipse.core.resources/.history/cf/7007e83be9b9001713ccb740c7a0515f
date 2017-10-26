@@ -1,0 +1,28 @@
+// Agent measurement_agent in project diabetes_mas
+
+/* Initial beliefs and rules */
+
+/* Initial goals */
+!configure_patient_dataset_reader.
+
+/* Plans */
++!configure_patient_dataset_reader : true <-
+makeArtifact(patient_dataset_reader,
+"diabetes_mas.PatientDatasetReader", [], ArtId);
+focus(ArtId);
+.println("measurement agent started");
+!startTuplesReaderArtefact.
+
++!startTuplesReaderArtefact : true <-
+println("Dataset to load:");
+readHeader(DatasetHeader);
+println(DatasetHeader);
+startTuplesReader.
+
+
+
+{ include("$jacamoJar/templates/common-cartago.asl") }
+{ include("$jacamoJar/templates/common-moise.asl") }
+
+// uncomment the include below to have a agent that always complies with its organization  
+{ include("$jacamoJar/templates/org-obedient.asl") }
