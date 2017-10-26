@@ -1,0 +1,40 @@
+// Agent measurement_agent in project diabetes_mas
+
+/* Initial beliefs and rules */
+number_of_tuples(NumberOfTuples).
+
+/* Initial goals */
+!configure_patient_dataset_reader.
+
+/* Plans */
++!configure_patient_dataset_reader : true <-
+makeArtifact(patient_dataset_reader,
+"diabetes_mas.PatientDatasetReader", [], ArtId);
+focus(ArtId);
+.println("measurement agent started");
+!startTuplesReaderArtefact.
+
++!startTuplesReaderArtefact : true <-
+println("Dataset to load:");
+readHeader(DatasetHeader);
+println(DatasetHeader);
+startTuplesReader.
+
++current_patient_tuple(PatientDataTuple) : true <-
+.println(PatientDataTuple);
+?number_of_last_tuple_read(NumberOfCurrentTuple);
+!readNextPatientDataTuple(NumberOfCurrentTuple + 1).
+
++!readNextPatientDataTuple(NumberOfNextTuple) : true <-
+readTuple(NumberOfNextTuple);
++stopWorking(NumberOfNextTuple + 1).
+
++stopWorking : number_of_tuples(NumberOfTuples) == number_of_last_tuple_read <-
+.println("I have finished my task").
+
+
+{ include("$jacamoJar/templates/common-cartago.asl") }
+{ include("$jacamoJar/templates/common-moise.asl") }
+
+// uncomment the include below to have a agent that always complies with its organization  
+{ include("$jacamoJar/templates/org-obedient.asl") }
