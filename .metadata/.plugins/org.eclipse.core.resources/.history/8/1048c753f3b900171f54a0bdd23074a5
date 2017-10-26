@@ -7,9 +7,7 @@
 +!focus(ArtId) <- // goal sent by the Agents to focus artefacts
 lookupArtifact(ArtId,MediumId);
  focus(MediumId).
- 
 +mentor(MentorAgent) <- !ask_model_path.
-
 +patient_measures(PatientMeasure): ml_algorithm(AlgType) <- !perform_diabetes_diagnosis(PatientMeasure).
 
 -!perform_diabetes_diagnosis(PatientMeasure)[error(no_relevant)]: mentor(Mentor) <-
@@ -17,10 +15,6 @@ lookupArtifact(ArtId,MediumId);
 Plan);
 .add_plan(Plan);
 !perform_diabetes_diagnosis(PatientMeasure).
-
-+!ask_model_path : mentor(Mentor) & ml_algorithm(AlgType) <-
-.send(Mentor,tell,model_path(AlgType)).
-
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }

@@ -13,12 +13,36 @@
 */
 
 mas diabetes_mas {
+ agent measurement_agent : measurement_agent.asl
+ agent ml_classifier_mentor_agent : diabetes_classifier_agent_mentor.asl
 
-    agent measurement_agent : measurement_agent.asl
-    
-    // agent source path
-    asl-path: src/agt
-              src/agt/inc
- 
+ agent diabetes_diagnosis_vote_judge_agent : diabetes_diagnosis_vote_judge.asl{
+ beliefs:tuple_reader_agent(measurement_agent),
+ mentor(ml_classifier_mentor_agent)
+ }
+
+
+ agent decision_tree_classifier_agent : diabetes_classifier_agent.asl {
+ instances: 4
+ beliefs: ml_algorithm(decision_tree)
+ }
+
+agent feed_forward_network_classifier_agent : diabetes_classifier_agent.asl {
+ instances: 3
+ beliefs: ml_algorithm(feed_forward_network)
+ }
+
+ workspace diabetes_diagnosis_room {
+
+ agents: measurement_agent,
+ feed_forward_network_classifier_agent,
+ diabetes_diagnosis_vote_judge_agent,
+ decision_tree_classifier_agent,
+ ml_classifier_mentor_agent
+ }
+
+ // agent source path
+ asl-path: src/agt
+ src/agt/inc
 }
 
