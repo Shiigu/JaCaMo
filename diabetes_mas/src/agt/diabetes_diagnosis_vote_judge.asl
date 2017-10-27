@@ -26,6 +26,8 @@ makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],M
 ?tuple_reader_agent(TupleReaderAgent)
 .send(TupleReaderAgent,achieve,focus(measure_comm_medium)).
 
+
+//Punto 3
 +new_voter_registration[source(VoterAgent)] : true <-
 ?number_of_voters(Number);
 -+number_of_voters(Number + 1)
@@ -34,11 +36,13 @@ makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],M
 .send(VoterAgent, achieve, focus(diagnosis_result_depository))
 .send(VoterAgent, achieve, focus(measure_comm_medium)).
 
+//Consigna 5
 +!start_patient_dataset_reader: tuple_reader_agent(TupleReaderAgent) <-
 .send(TupleReaderAgent,achieve,start_patient_data_reader).
 +!read_next_patient_dataset_tuple: tuple_reader_agent(TupleReaderAgent) <-
 .send(TupleReaderAgent,achieve,read_next_patient_data_tuple).
 
+//Consigna 6
 +number_of_votes(CurrentNumberOfVotes) : vote_session_started & number_of_voters(NumberOfVoters) &
 CurrentNumberOfVotes == NumberOfVoters <-
 getVotationResults(TupleNumber,PositiveVotes,NegativeVotes)
@@ -47,6 +51,9 @@ getVotationResults(TupleNumber,PositiveVotes,NegativeVotes)
 
 +no_tuples_to_read <-
 .println("Votation session ended").
+
+
+
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }

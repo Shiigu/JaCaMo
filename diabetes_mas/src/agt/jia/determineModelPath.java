@@ -5,12 +5,8 @@ package jia;
 import java.util.Date;
 import java.util.Random;
 
-import jason.asSemantics.DefaultInternalAction;
-import jason.asSemantics.TransitionSystem;
-import jason.asSemantics.Unifier;
-import jason.asSyntax.StringTerm;
-import jason.asSyntax.StringTermImpl;
-import jason.asSyntax.Term;
+import jason.asSemantics.*;
+import jason.asSyntax.*;
 
 public class determineModelPath extends DefaultInternalAction {
 
@@ -21,8 +17,9 @@ public class determineModelPath extends DefaultInternalAction {
 
     	Random random = new Random(new Date().getTime());
     	String basePath = "models\\";    	
-    	String[] treeModelNames = {"tree_model_name_here","","",""};
-    	String[] neuralNetworkModelPaths = {"mlp_hl_4.model","mlp_hl_5.model"};
+    	String[] treeModelNames = {"Sin_0_6","Sin_3_4","Sin_6_3_0","Sin_6_3_2"};
+    	String[] neuralNetworkModelPaths = {"reptree.model_sin_0_6","reptree.model_sin_3_4",
+    			"reptree.model_sin_6_3_0","reptree.model_sin_6_3_2"};
     	
     	String algType  = args[0].toString();
     	String modelPath = "";
