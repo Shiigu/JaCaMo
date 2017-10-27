@@ -5,15 +5,18 @@ package jia;
 import java.util.Date;
 import java.util.Random;
 
-import jason.*;
-import jason.asSemantics.*;
-import jason.asSyntax.*;
-import jason.stdlib.term2string;
-import utils.JasonUtils;
+import jason.asSemantics.DefaultInternalAction;
+import jason.asSemantics.TransitionSystem;
+import jason.asSemantics.Unifier;
+import jason.asSyntax.StringTerm;
+import jason.asSyntax.StringTermImpl;
+import jason.asSyntax.Term;
 
 public class determineModelPath extends DefaultInternalAction {
 
-    @Override
+	private static final long serialVersionUID = -440364528866390568L;
+
+	@Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 
     	Random random = new Random(new Date().getTime());

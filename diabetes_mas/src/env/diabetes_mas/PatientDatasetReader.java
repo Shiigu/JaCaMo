@@ -9,8 +9,6 @@ import cartago.ObsProperty;
 import cartago.OpFeedbackParam;
 import jason.NoValueException;
 import jason.asSyntax.ListTerm;
-import jason.asSyntax.NumberTerm;
-import jason.asSyntax.NumberTermImpl;
 import model.PatientData;
 import utils.CSVReaderUtil;
 

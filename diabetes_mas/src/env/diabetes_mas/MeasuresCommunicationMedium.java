@@ -6,7 +6,6 @@ import cartago.*;
 import jason.asSyntax.ListTerm;
 import jason.asSyntax.ListTermImpl;
 import jason.asSyntax.NumberTermImpl;
-import jason.asSyntax.Term;
 
 public class MeasuresCommunicationMedium extends Artifact {
 	

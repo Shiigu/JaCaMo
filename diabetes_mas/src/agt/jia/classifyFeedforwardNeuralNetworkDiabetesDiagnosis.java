@@ -3,16 +3,22 @@
 package jia;
 
 import classifiers.FeedforwardClassifier;
-import classifiers.TreeClassifier;
-import jason.*;
-import jason.asSemantics.*;
-import jason.asSyntax.*;
-import model.DiabetesDiagnosisResultEnum;
+import jason.JasonException;
+import jason.asSemantics.DefaultInternalAction;
+import jason.asSemantics.TransitionSystem;
+import jason.asSemantics.Unifier;
+import jason.asSyntax.LiteralImpl;
+import jason.asSyntax.StringTerm;
+import jason.asSyntax.StringTermImpl;
+import jason.asSyntax.Term;
 import utils.JasonUtils;
 
 public class classifyFeedforwardNeuralNetworkDiabetesDiagnosis extends DefaultInternalAction {
 
-    @Override
+    
+	private static final long serialVersionUID = -7215849253024468610L;
+
+	@Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
     	
     	if (args[0].isString() == false ){

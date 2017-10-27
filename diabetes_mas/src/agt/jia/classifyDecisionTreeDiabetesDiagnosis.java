@@ -7,18 +7,17 @@ import jason.JasonException;
 import jason.asSemantics.DefaultInternalAction;
 import jason.asSemantics.TransitionSystem;
 import jason.asSemantics.Unifier;
-import jason.asSyntax.Literal;
 import jason.asSyntax.LiteralImpl;
 import jason.asSyntax.StringTerm;
 import jason.asSyntax.StringTermImpl;
 import jason.asSyntax.Term;
-import jason.asSyntax.UnnamedVar;
-import model.DiabetesDiagnosisResultEnum;
 import utils.JasonUtils;
 
 public class classifyDecisionTreeDiabetesDiagnosis extends DefaultInternalAction {
 
-    @Override
+	private static final long serialVersionUID = 1679672878186078747L;
+
+	@Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
     	
     	if (args[0].isString() == false ){

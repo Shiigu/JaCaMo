@@ -11,7 +11,9 @@ import utils.JasonUtils;
 
 public class getDoubleItemFromArrayAtIxdex extends DefaultInternalAction {
 
-    @Override
+	private static final long serialVersionUID = -6733908774230699675L;
+
+	@Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // execute the internal action
        // ts.getAg().getLogger().info("executing internal action 'jia.getArrayDoubleItem'");
