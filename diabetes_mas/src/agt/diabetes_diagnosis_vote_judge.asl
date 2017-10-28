@@ -36,6 +36,12 @@ number_of_voters(PreviousNumberOfVoters + 1)
 .send(VoterAgent, achieve, focus(diagnosis_result_depository))
 .send(VoterAgent, achieve, focus(measure_comm_medium)).
 
++!start_patient_dataset_reader: tuple_reader_agent(TupleReaderAgent) <-
+.send(TupleReaderAgent,achieve,start_patient_data_reader).
+
++!read_next_patient_dataset_tuple: tuple_reader_agent(TupleReaderAgent) <-
+.send(TupleReaderAgent,achieve,read_next_patient_data_tuple).
+
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
 
