@@ -16,23 +16,21 @@ println("Dataset to load:");
 readHeader(DatasetHeader);
 println(DatasetHeader).
 
-+!start_patient_data_reader [source(JudgeAgent)]: true <-
-+judge_agent(JudgeAgent);
-startTuplesReader.
 
++commitment(AgentName, MisId, SchId): MisId == diagnosis_session_manager_mission <-
++session_manager(AgentName).
++!start_reading_tuples <-
++no_tuples_to_read(false)
+startTuplesReader.
 +!read_next_patient_data_tuple : number_of_last_tuple_read(CurrentTupleNumber) &
 number_of_tuples(NumberOfTuples) & (CurrentTupleNumber + 1) < NumberOfTuples <-
 readTuple(CurrentTupleNumber + 1).
-
 +!read_next_patient_data_tuple : number_of_last_tuple_read(CurrentTupleNumber) &
 number_of_tuples(NumberOfTuples) & (CurrentTupleNumber + 1) == NumberOfTuples <-
-.println("No tuples to read");
-?judge_agent(JudgeAgent);
-.send(JudgeAgent,tell,no_tuples_to_read).
-
+-+no_tuples_to_read(true);
+!inform_no_tuples_to_read.
 +current_patient_tuple(PatientDataTuple) : true
 <-
-clearPatientMeasureData;
 .length(PatientDataTuple,NumberOfFields);
 for(.range(Index,0,NumberOfFields - 1)){
 jia.getDoubleItemFromArrayAtIxdex(Index,PatientDataTuple,Measure);
@@ -40,6 +38,13 @@ addPatientField(Measure)
 };
 .println("patient data measures: ",PatientDataTuple);
 sendPatientMeasureData.
+
+-!inform_no_tuples_to_read : no_tuples_to_read(false) <-
+.println("waiting to read all tuples to inform the end of the session").
+
++!inform_no_tuples_to_read : no_tuples_to_read(true) <-
+.println("No tuples to read");
+goalAchieved(inform_no_tuples_to_read).
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
