@@ -2,14 +2,30 @@
 
 /* Initial beliefs and rules */
 
-
+number_of_voters(0).
 /* Initial goals */
-
-!start.
+!configure_vote_session.
 
 /* Plans */
 
-+!start : true <- .print("hello world.").
++!configure_vote_session <-
+!create_diagnosis_depository;
+!create_measure_communication_medium;
+.broadcast(tell,start_vote_registration);
+.wait(1000);
++vote_session_started
+.println("start vote session");
+!start_patient_dataset_reader.
+
++!create_diagnosis_depository <-
+makeArtifact(diagnosis_result_depository, "diabetes_mas.DiagnosisResultDepository", [], ArtId);
+focus(ArtId).
+
++!create_measure_communication_medium : true <-
+makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],MediumId)
+
+?tuple_reader_agent(TupleReaderAgent)
+.send(TupleReaderAgent,achieve,focus(measure_comm_medium)).
 
 
 
