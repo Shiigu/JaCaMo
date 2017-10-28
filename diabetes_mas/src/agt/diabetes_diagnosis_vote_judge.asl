@@ -42,6 +42,14 @@ number_of_voters(PreviousNumberOfVoters + 1)
 +!read_next_patient_dataset_tuple: tuple_reader_agent(TupleReaderAgent) <-
 .send(TupleReaderAgent,achieve,read_next_patient_data_tuple).
 
++number_of_votes(CurrentNumberOfVotes) : vote_session_started & number_of_voters(NumberOfVoters) & CurrentNumberOfVotes == NumberOfVoters <-
+getVotationResults(TupleNumber,PositiveVotes,NegativeVotes)
+.println("Positive votes: ",PositiveVotes," Negative votes: ",NegativeVotes)
+!read_next_patient_dataset_tuple.
+
++no_tuples_to_read <-
+.println("Votation session ended").
+
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
 
