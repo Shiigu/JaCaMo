@@ -29,8 +29,9 @@ makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],M
 
 
 +new_voter_registration[source(VoterAgent)] <-
-?number_of_voters(PreviousNumberOfVoters)
-number_of_voters(PreviousNumberOfVoters + 1)
+?number_of_voters(PreviousNumberOfVoters);
++number_of_voters(PreviousNumberOfVoters + 1);
+.println("Voter number ", PreviousNumberOfVoters + 1, " registered.");
 ?mentor(MentorAgent)
 .send(VoterAgent, tell, mentor(MentorAgent))
 .send(VoterAgent, achieve, focus(diagnosis_result_depository))
@@ -42,9 +43,13 @@ number_of_voters(PreviousNumberOfVoters + 1)
 +!read_next_patient_dataset_tuple: tuple_reader_agent(TupleReaderAgent) <-
 .send(TupleReaderAgent,achieve,read_next_patient_data_tuple).
 
++number_of_votes(CurrentNumberOfVotes) : vote_session_started & number_of_voters(NumberOfVoters) & CurrentNumberOfVotes < NumberOfVoters <-
+//Bueno si, si...para el ojo común, este plan no hace nada útil pero para el ojo penetrante es un plan necesario para que el proyecto funcione como es debido.
+?number_of_voters(PreviousNumberOfVoters).
+
 +number_of_votes(CurrentNumberOfVotes) : vote_session_started & number_of_voters(NumberOfVoters) & CurrentNumberOfVotes == NumberOfVoters <-
 getVotationResults(TupleNumber,PositiveVotes,NegativeVotes)
-.println("Positive votes: ",PositiveVotes," Negative votes: ",NegativeVotes)
+.println("Given ",NumberOfVoters," voters and ",CurrentNumberOfVotes," votes for the tuple ",TupleNumber,": Positive votes: ",PositiveVotes," Negative votes: ",NegativeVotes)
 !read_next_patient_dataset_tuple.
 
 +no_tuples_to_read <-

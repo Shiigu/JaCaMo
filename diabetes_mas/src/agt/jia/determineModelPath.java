@@ -17,9 +17,9 @@ public class determineModelPath extends DefaultInternalAction {
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 
     	Random random = new Random(new Date().getTime());
-    	String basePath = "models\\";    	
-    	String[] treeModelNames = {"tree_model_name_here","","",""};
-    	String[] neuralNetworkModelPaths = {"mlp_hl_4.model","mlp_hl_5.model", "sin_0_6.model", "sin_3_4.model", "sin_6_3_0.model", "sin_6_3_2.model"};
+    	String basePath = "models\\";
+    	String[] treeModelNames = {"sin_0_6.model", "sin_3_4.model", "sin_6_3_0.model", "sin_6_3_2.model"};
+    	String[] neuralNetworkModelPaths = {"mlp_hl_4.model","mlp_hl_5.model"};
     	
     	String algType  = args[0].toString();
     	String modelPath = "";

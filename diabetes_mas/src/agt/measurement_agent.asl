@@ -16,7 +16,7 @@ println("Dataset to load:");
 readHeader(DatasetHeader);
 println(DatasetHeader).
 
-+!start_patient_dataset_reader [source(JudgeAgent)]: true <-
++!start_patient_data_reader [source(JudgeAgent)]: true <-
 +judge_agent(JudgeAgent);
 startTuplesReader.
 
@@ -29,6 +29,7 @@ number_of_tuples(NumberOfTuples) & (CurrentTupleNumber + 1) == NumberOfTuples <-
 .println("No tuples to read");
 ?judge_agent(JudgeAgent);
 .send(JudgeAgent,tell,no_tuples_to_read).
+
 +current_patient_tuple(PatientDataTuple) : true
 <-
 clearPatientMeasureData;
