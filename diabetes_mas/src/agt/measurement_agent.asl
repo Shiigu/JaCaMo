@@ -4,11 +4,33 @@
 
 /* Initial goals */
 
-!start.
+!configure_patient_dataset_reader.
 
 /* Plans */
 
-+!start : true <- .print("hello world.").
++!configure_patient_dataset_reader : true <-
+makeArtifact(patient_dataset_reader, "diabetes_mas.PatientDatasetReader", [], ArtId);
+focus(ArtId);
+.println("measurement agent started");
+!startTuplesReaderArtefact.
+
++!startTuplesReaderArtefact : true <-
+println("Dataset to load:");
+readHeader(DatasetHeader);
+println(DatasetHeader);
+startTuplesReader.
+
++current_patient_tuple(PatientDataTuple) : true
+<-
+.println(PatientDataTuple);
+?number_of_last_tuple_read(NumberOfCurrentTuple);
+!readNextPatientDataTuple(NumberOfCurrentTuple + 1).
+
++!readNextPatientDataTuple(NumberOfNextTuple) : number_of_tuples(NumberOfTuples) & NumberOfNextTuple < NumberOfTuples <-
+readTuple(NumberOfNextTuple).
+
++!readNextPatientDataTuple(NumberOfNextTuple) : number_of_tuples(NumberOfTuples) & NumberOfNextTuple == NumberOfTuples <-
+.println("I have finished my task").
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
