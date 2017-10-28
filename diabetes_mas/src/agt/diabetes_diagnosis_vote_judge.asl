@@ -28,6 +28,13 @@ makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],M
 .send(TupleReaderAgent,achieve,focus(measure_comm_medium)).
 
 
++new_voter_registration[source(VoterAgent)] <-
+?number_of_voters(PreviousNumberOfVoters)
+number_of_voters(PreviousNumberOfVoters + 1)
+?mentor(MentorAgent)
+.send(VoterAgent, tell, mentor(MentorAgent))
+.send(VoterAgent, achieve, focus(diagnosis_result_depository))
+.send(VoterAgent, achieve, focus(measure_comm_medium)).
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
