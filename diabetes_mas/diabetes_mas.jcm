@@ -38,7 +38,7 @@ mas diabetes_mas {
 			decision_tree_classifier_agent diabetes_classifier
 			feed_forward_network_classifier_agent diabetes_classifier
 			measurement_agent dataset_tuple_reader
-			doctor_agent doctor_agent
+			doctor_agent final_judge
 			debug
 		}
 	}

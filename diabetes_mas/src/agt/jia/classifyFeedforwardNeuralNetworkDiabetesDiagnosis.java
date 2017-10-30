@@ -27,9 +27,13 @@ public class classifyFeedforwardNeuralNetworkDiabetesDiagnosis extends DefaultIn
     		throw new JasonException("second argument is not a list");
     	}
     	
-    	double [] patientDataTuple = JasonUtils.getDoubleArrayfrom(args[1]);
+    	double [] completePatientDataTuple = JasonUtils.getDoubleArrayfrom(args[1]);
+    	/*
+    	 * args[1] should contain just this-tuple values, but it contains the values from the beginning up to this tuple.
+    	 */
+    	double[] patientDataTupleLastEightElements = classifyDecisionTreeDiabetesDiagnosis.getLastElements(8, completePatientDataTuple);
     	
-    	String result = classifier.ClassifyInstance(patientDataTuple); 
+    	String result = classifier.ClassifyInstance(patientDataTupleLastEightElements); 
     	Term resultTerm = new LiteralImpl(result.toUpperCase());
     	
         return un.unifies(resultTerm,args[2]);
