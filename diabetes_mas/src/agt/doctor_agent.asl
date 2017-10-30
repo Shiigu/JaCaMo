@@ -9,6 +9,7 @@ makeArtifact(doctor_result_artefact, "diabetes_mas.DoctorResultArtefact", [], Ar
 focus(ArtId).
 
 +partial_diagnosis_result (PatientTupleNumber,PositiveCases,NegativeCases) <-
+.println("For tuple ", PatientTupleNumber, ": ", PositiveCases, " Positive and ", NegativeCases, " Negative");
 addPartialDiagnosisResult(PositiveCases,NegativeCases).
 
 +!final_report <-
