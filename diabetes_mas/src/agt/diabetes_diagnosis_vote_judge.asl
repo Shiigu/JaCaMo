@@ -38,8 +38,10 @@ setArgumentValue(comm_medium,"Measure_comm_medium_id",measure_comm_medium)[artif
 +tuple_reader_agent(AgentName).
 
 +number_of_votes(CurrentNumberOfVotes): vote_session_started & number_of_agents_subcribed(NumberOfAgents) & CurrentNumberOfVotes == NumberOfAgents <-
-getVotationResults(PatientTupleNumber,PositiveVotes,NegativeVotes);
-.println("Positive votes: ",PositiveVotes," Negative votes: ",NegativeVotes);
+getVotationResults(PatientTupleNumber, PositiveVotes, NegativeVotes);
+.println("Positive votes: ", PositiveVotes, " Negative votes: ", NegativeVotes);
+?doctor_agent(DoctorAgent)
+.send(Mentor, achieve, { +!partial_diagnosis_result (PatientTupleNumber, PositiveVotes, NegativeVotes)});
 !read_next_patient_dataset_tuple.
 
 +!read_next_patient_dataset_tuple: tuple_reader_agent(TupleReaderAgent) <-
