@@ -29,6 +29,8 @@ mas diabetes_mas {
 		beliefs: ml_algorithm(feed_forward_network)
 	}
 
+	agent doctor_agent : doctor_agent.asl
+
 	organisation aorg : diabetes_diagnosis_team.xml {
 			group agrp : diagnosis_session_group {
 			players: diabetes_diagnosis_vote_judge_agent diagnosis_session_manager
@@ -36,6 +38,7 @@ mas diabetes_mas {
 			decision_tree_classifier_agent diabetes_classifier
 			feed_forward_network_classifier_agent diabetes_classifier
 			measurement_agent dataset_tuple_reader
+			doctor_agent doctor_agent
 			debug
 		}
 	}
