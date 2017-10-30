@@ -30,7 +30,11 @@ setArgumentValue(diag_res_dep,"Diagnosis_result_medium_id",diagnosis_result_depo
 +!create_measure_communication_medium(SchArtId) <-
 makeArtifact(measure_comm_medium,"diabetes_mas.MeasuresCommunicationMedium",[],MediumId);
 setArgumentValue(comm_medium,"Measure_comm_medium_id",measure_comm_medium)[artifact_id(SchArtId)].
+
 +commitment(AgentName, MisId, SchId): MisId == dataset_tuple_reader_mission <-
++tuple_reader_agent(AgentName).
+
++commitment(AgentName, MisId, SchId): MisId == final_judge_mission <-
 +tuple_reader_agent(AgentName).
 
 +number_of_votes(CurrentNumberOfVotes): vote_session_started & number_of_agents_subcribed(NumberOfAgents) & CurrentNumberOfVotes == NumberOfAgents <-
